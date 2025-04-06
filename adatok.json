@@ -1,0 +1,8 @@
+[
+    { "nev": "Kiss Pál", "kor": 25, "email": "pal.kiss@example.com" },
+    { "nev": "Szabó Anna", "kor": 22, "email": "anna.szabo@example.com" },
+    { "nev": "Nagy Péter", "kor": 30, "email": "peter.nagy@example.com" },
+    { "nev": "Tóth Eszter", "kor": 27, "email": "eszter.toth@example.com" },
+    { "nev": "Farkas Gábor", "kor": 35, "email": "gabor.farkas@example.com" }
+  ]
+  

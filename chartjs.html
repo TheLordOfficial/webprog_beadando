@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <title>Chart.js példa</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script defer src="chartjs.js"></script>
+</head>
+<body>
+
+  <header>
+    <h1>Chart.js diagram készítés</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Főoldal</a></li>
+      <li><a href="tabla.html">Táblázat</a></li>
+      <li><a href="html5.html">HTML5</a></li>
+      <li><a href="chartjs.html" class="active">ChartJS</a></li>
+      <li><a href="ajax.html">AJAX</a></li>
+      <li><a href="oojs.html">OOJS</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h2>Adatok (5×5 tábla)</h2>
+    <table id="dataInput" border="1">
+      <tbody>
+        <!-- JavaScript tölti fel -->
+      </tbody>
+    </table>
+
+    <button onclick="drawChart()">Ábrázolás</button>
+
+    <h2>Diagram</h2>
+    <canvas id="chartCanvas" width="400" height="300"></canvas>
+  </main>
+
+  <footer>
+    <p>Készítők: Kiss Pál (ABC123), Szabó Anna (XYZ456)</p>
+  </footer>
+
+</body>
+</html>

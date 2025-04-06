@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML5 API-k</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="html5.js"></script>
+</head>
+<body>
+
+  <header>
+    <h1>HTML5 API példák</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Főoldal</a></li>
+      <li><a href="tabla.html">Táblázat</a></li>
+      <li><a href="html5.html" class="active">HTML5</a></li>
+      <li><a href="chartjs.html">ChartJS</a></li>
+      <li><a href="ajax.html">AJAX</a></li>
+      <li><a href="oojs.html">OOJS</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section>
+      <h2>1. LocalStorage</h2>
+      <input id="storageInput" placeholder="Írj be valamit...">
+      <button onclick="saveToStorage()">Mentés</button>
+      <p>Elmentett érték: <span id="storageResult">-</span></p>
+    </section>
+
+    <section>
+      <h2>2. Web Worker (háttérszámítás)</h2>
+      <button onclick="startWorker()">Számolás indítása</button>
+      <p>Eredmény: <span id="workerResult">-</span></p>
+    </section>
+
+    <section>
+      <h2>3. "SSE" (szimulált frissítés)</h2>
+      <p>Idő: <span id="sseClock">--:--:--</span></p>
+    </section>
+
+    <section>
+      <h2>4. Geolocation</h2>
+      <button onclick="getLocation()">Pozíció lekérdezése</button>
+      <p id="locationResult">Pozíció: -</p>
+    </section>
+
+    <section>
+      <h2>5. Drag & Drop</h2>
+      <div id="dragZone">
+        <img id="dragImg" src="https://via.placeholder.com/100" draggable="true" alt="kép">
+        <div id="dropZone">Dobd ide!</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>6. Canvas</h2>
+      <canvas id="myCanvas" width="200" height="200" style="border:1px solid #000;"></canvas>
+    </section>
+
+    <section>
+      <h2>7. SVG</h2>
+      <svg width="200" height="100">
+        <circle cx="50" cy="50" r="40" stroke="blue" stroke-width="4" fill="lightblue" />
+        <text x="50" y="55" text-anchor="middle" fill="black">SVG</text>
+      </svg>
+    </section>
+  </main>
+
+  <footer>
+    <p>Készítők: Kiss Pál (ABC123), Szabó Anna (XYZ456)</p>
+  </footer>
+
+</body>
+</html>
