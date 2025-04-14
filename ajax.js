@@ -1,129 +1,163 @@
-const apiUrl = "https://example.com/api"; // API URL
+code = "AAAAAAabc123";
+url = "ajaxapi.php";
 
-// Adatok lekérése (Read)
-function getData() {
-  fetch(`${apiUrl}/items`)
-    .then(response => response.json())
-    .then(data => {
-      let output = '';
-      let totalHeight = 0;
-      let maxHeight = -Infinity;
-      let count = data.length;
+async function read() {
+  document.getElementById("code").innerHTML = "code=" + code;
 
-      data.forEach(item => {
-        output += `<p>${item.name}: ${item.height} cm</p>`;
-        totalHeight += item.height;
-        maxHeight = Math.max(maxHeight, item.height);
-      });
-
-      const averageHeight = totalHeight / count;
-
-      document.getElementById('dataDisplay').innerHTML = output;
-      document.getElementById('statistics').innerHTML = `
-        <p>Összeg: ${totalHeight} cm</p>
-        <p>Átlag: ${averageHeight.toFixed(2)} cm</p>
-        <p>Legnagyobb: ${maxHeight} cm</p>
-      `;
-    })
-    .catch(error => console.error('Hiba a lekérés során:', error));
-}
-
-// Új adat létrehozása (Create)
-function createData() {
-  const name = document.getElementById("createName").value;
-  const height = document.getElementById("createHeight").value;
-
-  // Validáció
-  if (name === "" || height === "") {
-    alert("A név és magasság mező nem lehet üres!");
-    return;
-  }
-
-  if (name.length > 30) {
-    alert("A név maximum 30 karakter lehet!");
-    return;
-  }
-
-  const newData = { name, height: parseInt(height) };
-
-  fetch(`${apiUrl}/items`, {
-    method: "POST",
+  let response = await fetch(url, {
+    method: 'post',
+    cache: 'no-cache',
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/x-www-form-urlencoded',
     },
-    body: JSON.stringify(newData)
-  })
-    .then(response => response.json())
-    .then(data => {
-      alert("Új adat hozzáadva!");
-      getData();
-    })
-    .catch(error => console.error('Hiba az új adat hozzáadásakor:', error));
-}
+    body: "code=" + code + "&op=read"
+  });
 
-// Adat módosítása (Update)
-function getDataForId() {
-  const id = document.getElementById("updateId").value;
+  let data = await response.text();
+  data = JSON.parse(data);
+  let list = data.list;
 
-  fetch(`${apiUrl}/items/${id}`)
-    .then(response => response.json())
-    .then(data => {
-      if (data) {
-        document.getElementById("updateName").value = data.name;
-        document.getElementById("updateHeight").value = data.height;
-      } else {
-        alert("Az ID nem található!");
-      }
-    })
-    .catch(error => console.error('Hiba a módosítási adat lekérésekor:', error));
-}
+  let str = "<h1>Read</h1>";
+  str += "<p>Number of records: " + data.rowCount + "</p>";
+  str += "<p>Last max " + data.maxNum + " records:</p>";
 
-function updateData() {
-  const id = document.getElementById("updateId").value;
-  const name = document.getElementById("updateName").value;
-  const height = document.getElementById("updateHeight").value;
+  // Táblázat fejléce
+  str += "<table border='1' cellpadding='5' cellspacing='0'><tr>";
+  str += "<th>Id</th><th>Name</th><th>Height</th><th>Weight</th><th>Code</th>";
+  str += "</tr>";
 
-  if (name === "" || height === "") {
-    alert("A név és magasság mező nem lehet üres!");
-    return;
+  // Adatok vízszintesen soronként
+  for (let i = 0; i < list.length; i++) {
+    str += "<tr>";
+    str += "<td>" + list[i].id + "</td>";
+    str += "<td>" + list[i].name + "</td>";
+    str += "<td>" + list[i].height + "</td>";
+    str += "<td>" + list[i].weight + "</td>";
+    str += "<td>" + list[i].code + "</td>";
+    str += "</tr>";
   }
 
-  if (name.length > 30) {
-    alert("A név maximum 30 karakter lehet!");
-    return;
+  str += "</table>";
+
+  // Height statisztikák
+  let heights = list.map(item => parseFloat(item.height));
+  if (heights.length > 0) {
+    let sum = heights.reduce((a, b) => a + b, 0);
+    let avg = (sum / heights.length).toFixed(2);
+    let max = Math.max(...heights);
+
+    str += "<h2>Height statisztika</h2>";
+    str += "<p>Összeg: " + sum + "</p>";
+    str += "<p>Átlag: " + avg + "</p>";
+    str += "<p>Legnagyobb: " + max + "</p>";
   }
 
-  const updatedData = { name, height: parseInt(height) };
+  document.getElementById("readDiv").innerHTML = str;
+}
 
-  fetch(`${apiUrl}/items/${id}`, {
-    method: "PUT",
+
+async function create() {
+  nameStr = document.getElementById("name1").value;
+  height = document.getElementById("height1").value;
+  weight = document.getElementById("weight1").value;
+  if (nameStr.length > 0 && nameStr.length <= 30 && height.length > 0 && height.length <= 30 && weight.length > 0 && weight.length <= 30 && code.length <= 30) {
+    let response = await fetch(url, {
+      method: 'post',
+      cache: 'no-cache',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: "code=" + code + "&op=create&name=" + nameStr + "&height=" + height + "&weight=" + weight
+    });
+    let data = await response.text();
+    if (data > 0)
+      str = "Create successful!";
+    else
+      str = "Create NOT successful!";
+    document.getElementById("createResult").innerHTML = str;
+    document.getElementById("name1").value = "";
+    document.getElementById("height1").value = "";
+    document.getElementById("weight1").value = "";
+    read();
+  }
+  else
+    document.getElementById("createResult").innerHTML = "Validation error!!";
+}
+
+async function getDataForId() {
+  let response = await fetch(url, {
+    method: 'post',
+    cache: 'no-cache',
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/x-www-form-urlencoded',
     },
-    body: JSON.stringify(updatedData)
-  })
-    .then(response => response.json())
-    .then(data => {
-      alert("Adat módosítva!");
-      getData();
-    })
-    .catch(error => console.error('Hiba az adat módosításakor:', error));
+    body: "code=" + code + "&op=read"
+  });
+  let data = await response.text();
+  data = JSON.parse(data);
+  let list = data.list;
+  for (let i = 0; i < list.length; i++)
+    if (list[i].id == document.getElementById("idUpd").value) {
+      document.getElementById("name2").value = list[i].name;
+      document.getElementById("height2").value = list[i].height;
+      document.getElementById("weight2").value = list[i].weight;
+    }
 }
 
-// Adat törlése (Delete)
-function deleteData() {
-  const id = document.getElementById("deleteId").value;
-
-  fetch(`${apiUrl}/items/${id}`, {
-    method: "DELETE"
-  })
-    .then(response => {
-      if (response.ok) {
-        alert("Adat törölve!");
-        getData();
-      } else {
-        alert("Nem található adat ezzel az ID-val!");
-      }
-    })
-    .catch(error => console.error('Hiba az adat törlésekor:', error));
+async function update() {
+  id = document.getElementById("idUpd").value;
+  nameStr = document.getElementById("name2").value;
+  height = document.getElementById("height2").value;
+  weight = document.getElementById("weight2").value;
+  if (id.length > 0 && id.length <= 30 && nameStr.length > 0 && nameStr.length <= 30 && height.length > 0 && height.length <= 30 && weight.length > 0 && weight.length <= 30 && code.length <= 30) {
+    let response = await fetch(url, {
+      method: 'post',
+      cache: 'no-cache',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: "code=" + code + "&op=update&id=" + id + "&name=" + nameStr + "&height=" + height + "&weight=" + weight
+    });
+    let data = await response.text();
+    if (data > 0)
+      str = "Update successful!";
+    else
+      str = "Update NOT successful!";
+    document.getElementById("updateResult").innerHTML = str;
+    document.getElementById("idUpd").value = "";
+    document.getElementById("name2").value = "";
+    document.getElementById("height2").value = "";
+    document.getElementById("weight2").value = "";
+    read();
+  }
+  else
+    document.getElementById("updateResult").innerHTML = "Validation error!!";
 }
+
+async function deleteF() {
+  id = document.getElementById("idDel").value;
+  if (id.length > 0 && id.length <= 30) {
+    let response = await fetch(url, {
+      method: 'post',
+      cache: 'no-cache',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: "code=" + code + "&op=delete&id=" + id
+    });
+    let data = await response.text();
+    if (data > 0)
+      str = "Delete successful!";
+    else
+      str = "Delete NOT successful!";
+    document.getElementById("deleteResult").innerHTML = str;
+    document.getElementById("idDel").value = "";
+    read();
+  }
+  else
+    document.getElementById("deleteResult").innerHTML = "Validation error!!";
+}
+
+window.onload = function () {
+  read();
+};
