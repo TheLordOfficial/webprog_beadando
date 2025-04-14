@@ -5,6 +5,8 @@ let chart;
 // Táblázat inicializálása 5×5
 for (let i = 0; i < 5; i++) {
   let row = document.createElement("tr");
+
+  // Sor feltöltése véletlenszerű adatokkal
   for (let j = 0; j < 5; j++) {
     let cell = document.createElement("td");
     let input = document.createElement("input");
@@ -14,16 +16,27 @@ for (let i = 0; i < 5; i++) {
     cell.appendChild(input);
     row.appendChild(cell);
   }
+
+  // Ábrázolás gomb hozzáadása
+  let buttonCell = document.createElement("td");
+  let button = document.createElement("button");
+  button.textContent = "Ábrázolás";
+  button.onclick = function() {
+    drawChart(i); // Az aktuális sor indexét adjuk át
+  };
+  buttonCell.appendChild(button);
+  row.appendChild(buttonCell);
+
   table.appendChild(row);
 }
 
-function drawChart() {
+function drawChart(rowIndex) {
   const values = [];
   const labels = [];
 
-  // Csak az első sorból olvasunk be adatokat
-  const firstRowInputs = table.querySelectorAll("tr:nth-child(1) input");
-  firstRowInputs.forEach((input, index) => {
+  // A kiválasztott sor adatainak lekérése
+  const rowInputs = table.querySelectorAll(`tr:nth-child(${rowIndex + 1}) input`);
+  rowInputs.forEach((input, index) => {
     const val = parseFloat(input.value);
     if (!isNaN(val)) {
       values.push(val);
@@ -31,19 +44,19 @@ function drawChart() {
     }
   });
 
-  if (chart) chart.destroy();
+  if (chart) chart.destroy(); // Ha már van diagram, töröljük
 
   chart = new Chart(chartCanvas, {
-    type: "line",  // Vonaldiagram
+    type: "line", // Vonaldiagram
     data: {
       labels: labels,
       datasets: [{
-        label: "Első sor értékei",
+        label: `Sor ${rowIndex + 1} értékei`,
         data: values,
-        backgroundColor: "rgba(54, 162, 235, 0.2)",  // Félig átlátszó háttér
-        borderColor: "rgba(54, 162, 235, 1)",  // A vonal színe
+        backgroundColor: "rgba(54, 162, 235, 0.2)", // Félig átlátszó háttér
+        borderColor: "rgba(54, 162, 235, 1)", // A vonal színe
         borderWidth: 2,
-        fill: true  // Töltsük ki a vonal alatti részt
+        fill: true // Töltsük ki a vonal alatti részt
       }]
     },
     options: {
