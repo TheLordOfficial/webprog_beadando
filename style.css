@@ -239,3 +239,8 @@ body {
   margin-top: 20px; /* Távolság a diagramnak */
 }
 
+/* Ha a menülink aktív, szürkévé válik */
+nav ul li a.active {
+  background-color: #aaa; /* Szürke háttér */
+  color: white; /* Fehér színű szöveg */
+}
