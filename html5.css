@@ -1,0 +1,109 @@
+/* Alap stílusok */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+  }
+  
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  nav {
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav ul li {
+    display: inline;
+    margin-right: 15px;
+  }
+  
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  #submenu {
+    background-color: #444;
+    padding: 1rem;
+  }
+  
+  #submenu ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  #submenu ul li {
+    margin-bottom: 10px;
+  }
+  
+  #submenu ul li a {
+    color: #ddd;
+    text-decoration: none;
+  }
+  
+  /* A színezett sávok */
+  .section-header {
+    background-color: #007bff; /* Kék háttér */
+    color: white;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 5px;
+  }
+  
+  .section {
+    margin-bottom: 30px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* A gombok és input mezők */
+  button, input {
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+  }
+  
+  button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #218838;
+  }
+  
+  input {
+    width: 200px;
+    border: 1px solid #ccc;
+  }
+  
+  footer {
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+  }
+  

@@ -51,4 +51,191 @@ body {
   footer {
     clear: both;
   }
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
   
+  header, footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1em;
+  }
+  
+  nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: #444;
+    overflow-x: auto;
+  }
+  
+  nav ul li {
+    flex: 1;
+  }
+  
+  nav ul li a {
+    display: block;
+    padding: 1em;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+  }
+  
+  nav ul li a:hover, .active {
+    background-color: #666;
+  }
+  
+  aside {
+    background: #f2f2f2;
+    padding: 1em;
+    float: right;
+    width: 20%;
+  }
+  
+  main {
+    margin-right: 22%;
+    padding: 1em;
+  }
+  
+  footer {
+    clear: both;
+  }
+  
+  .task-container {
+    margin-bottom: 2em;
+  }
+  
+  .task-header {
+    padding: 1em;
+    color: white;
+    text-align: center;
+  }
+  
+  .task-body {
+    padding: 1em;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+  }
+  
+  #dragZone {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  #dropZone {
+    width: 200px;
+    height: 200px;
+    border: 2px dashed #aaa;
+    text-align: center;
+    line-height: 200px;
+    background-color: #f0f0f0;
+  }
+  
+
+  /* Task container */
+.task-container {
+  margin: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.task-header {
+  padding: 10px;
+  color: white;
+  border-radius: 8px 8px 0 0;
+  font-size: 20px;
+  text-align: center;
+}
+
+#dragZone {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 120px;
+  border: 1px dashed #ccc;
+  padding: 10px;
+  position: relative;
+}
+
+#dragImg {
+  width: 80px;
+  height: 80px;
+  cursor: grab;
+}
+
+#dropZone {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: 2px dashed #4CAF50;
+  background-color: rgba(0, 128, 0, 0.1);
+  color: #4CAF50;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+#dragImg:active {
+  cursor: grabbing;
+}
+
+/* Alap táblázat stílusok */
+.chart-page table {
+  width: 80%; /* A táblázat szélessége */
+  margin: 20px auto; /* A táblázat középre igazítása */
+  border-collapse: collapse; /* Egyesíti a határokat, hogy ne legyenek duplák */
+}
+
+/* Cellák stílusai */
+.chart-page td, .chart-page th {
+  padding: 10px; /* Belső margó hozzáadása a cellákhoz */
+  border: 1px solid #ddd; /* Világos szürke szegély */
+  text-align: center; /* Középre igazított szöveg */
+  font-size: 14px; /* Betűméret */
+}
+
+/* Fejléc sor stílusa */
+.chart-page th {
+  background-color: #FF6347; /* Fejléc háttérszíne */
+  color: white; /* Fehér szöveg */
+  font-weight: bold; /* Vastag betűs */
+}
+
+/* Sorok váltakozó háttérszíne */
+.chart-page tr:nth-child(even) {
+  background-color: #f9f9f9; /* Világos háttér az páros soroknak */
+}
+
+.chart-page tr:nth-child(odd) {
+  background-color: #e0e0e0; /* Sötétebb háttér a páratlan soroknak */
+}
+
+/* Kép és input mezők szépítése */
+.chart-page input[type="number"] {
+  width: 60px;
+  padding: 5px;
+  text-align: center;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.chart-page input[type="number"]:focus {
+  border-color: #FF6347; /* Fokuszáláskor narancssárga szegély */
+  outline: none; /* Nincs külső kontúr */
+}
+
+/* Diagram beállítások */
+.chart-page #chartCanvas {
+  margin-top: 20px; /* Távolság a diagramnak */
+}
+

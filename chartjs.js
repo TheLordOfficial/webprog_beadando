@@ -34,15 +34,16 @@ function drawChart() {
   if (chart) chart.destroy();
 
   chart = new Chart(chartCanvas, {
-    type: "bar",
+    type: "line",  // Vonaldiagram
     data: {
       labels: labels,
       datasets: [{
         label: "Első sor értékei",
         data: values,
-        backgroundColor: "rgba(54, 162, 235, 0.5)",
-        borderColor: "rgba(54, 162, 235, 1)",
-        borderWidth: 1
+        backgroundColor: "rgba(54, 162, 235, 0.2)",  // Félig átlátszó háttér
+        borderColor: "rgba(54, 162, 235, 1)",  // A vonal színe
+        borderWidth: 2,
+        fill: true  // Töltsük ki a vonal alatti részt
       }]
     },
     options: {

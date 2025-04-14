@@ -23,51 +23,96 @@
     </ul>
   </nav>
 
+  <nav id="submenu">
+    <ul>
+      <li><a href="#webStorage">Web Storage</a></li>
+      <li><a href="#webWorkers">Web Workers</a></li>
+      <li><a href="#sse">Server-Sent Events</a></li>
+      <li><a href="#geolocation">Geolocation API</a></li>
+      <li><a href="#dragDrop">Drag and Drop</a></li>
+      <li><a href="#canvas">Canvas</a></li>
+      <li><a href="#svg">SVG</a></li>
+    </ul>
+  </nav>
+
+  <aside>
+    <p>Ez itt az oldalsáv.</p>
+  </aside>
+  
   <main>
-    <section>
-      <h2>1. LocalStorage</h2>
-      <input id="storageInput" placeholder="Írj be valamit...">
-      <button onclick="saveToStorage()">Mentés</button>
-      <p>Elmentett érték: <span id="storageResult">-</span></p>
-    </section>
-
-    <section>
-      <h2>2. Web Worker (háttérszámítás)</h2>
-      <button onclick="startWorker()">Számolás indítása</button>
-      <p>Eredmény: <span id="workerResult">-</span></p>
-    </section>
-
-    <section>
-      <h2>3. "SSE" (szimulált frissítés)</h2>
-      <p>Idő: <span id="sseClock">--:--:--</span></p>
-    </section>
-
-    <section>
-      <h2>4. Geolocation</h2>
-      <button onclick="getLocation()">Pozíció lekérdezése</button>
-      <p id="locationResult">Pozíció: -</p>
-    </section>
-
-    <section>
-      <h2>5. Drag & Drop</h2>
-      <div id="dragZone">
-        <img id="dragImg" src="https://via.placeholder.com/100" draggable="true" alt="kép">
-        <div id="dropZone">Dobd ide!</div>
+    <div class="task-container" id="webStorage">
+      <div class="task-header" style="background-color: #E0E0E0;">
+        <h2>1. LocalStorage</h2>
       </div>
-    </section>
+      <div class="task-body">
+        <input id="storageInput" placeholder="Írj be valamit...">
+        <button onclick="saveToStorage()">Mentés</button>
+        <p>Elmentett érték: <span id="storageResult">-</span></p>
+      </div>
+    </div>
 
-    <section>
-      <h2>6. Canvas</h2>
-      <canvas id="myCanvas" width="200" height="200" style="border:1px solid #000;"></canvas>
-    </section>
+    <div class="task-container" id="webWorkers">
+      <div class="task-header" style="background-color: #B0E0E6;">
+        <h2>2. Web Worker (háttérszámítás)</h2>
+      </div>
+      <div class="task-body">
+        <button onclick="startWorker()">Számolás indítása</button>
+        <p>Eredmény: <span id="workerResult">-</span></p>
+      </div>
+    </div>
 
-    <section>
-      <h2>7. SVG</h2>
-      <svg width="200" height="100">
-        <circle cx="50" cy="50" r="40" stroke="blue" stroke-width="4" fill="lightblue" />
-        <text x="50" y="55" text-anchor="middle" fill="black">SVG</text>
-      </svg>
-    </section>
+    <div class="task-container" id="sse">
+      <div class="task-header" style="background-color: #FFD700;">
+        <h2>3. "SSE" (szimulált frissítés)</h2>
+      </div>
+      <div class="task-body">
+        <p>Idő: <span id="sseClock">--:--:--</span></p>
+      </div>
+    </div>
+
+    <div class="task-container" id="geolocation">
+      <div class="task-header" style="background-color: #98FB98;">
+        <h2>4. Geolocation</h2>
+      </div>
+      <div class="task-body">
+        <button onclick="getLocation()">Pozíció lekérdezése</button>
+        <p id="locationResult">Pozíció: -</p>
+      </div>
+    </div>
+    
+    <div class="task-container" id="dragDrop">
+      <div class="task-header" style="background-color: #FF6347;">
+        <h2>5. Drag & Drop</h2>
+      </div>
+      <div class="task-body">
+        <div id="dragZone">
+          <img id="dragImg" src="ball.png" draggable="true" alt="kép" width="100" height="100">
+          <div id="dropZone">Dobd ide!</div>
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="task-container" id="canvas">
+      <div class="task-header" style="background-color: #D3D3D3;">
+        <h2>6. Canvas</h2>
+      </div>
+      <div class="task-body">
+        <canvas id="myCanvas" width="200" height="200" style="border:1px solid #000;"></canvas>
+      </div>
+    </div>
+
+    <div class="task-container" id="svg">
+      <div class="task-header" style="background-color: #E6E6FA;">
+        <h2>7. SVG</h2>
+      </div>
+      <div class="task-body">
+        <svg width="200" height="100">
+          <circle cx="50" cy="50" r="40" stroke="blue" stroke-width="4" fill="lightblue" />
+          <text x="50" y="55" text-anchor="middle" fill="black">SVG</text>
+        </svg>
+      </div>
+    </div>
   </main>
 
   <footer>
